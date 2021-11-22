@@ -56,14 +56,20 @@ fi
 cd $REPO_DIR
 PACKAGE=$1.rb
 if [ ! -f $PACKAGE ]; then
-    echo "Not found $1. Try -c option." 1>&2
+    if [ $OPT_USE_CASK -eq 0 ]; then
+        echo "Not found $1. Try -c option." 1>&2
+    else
+        echo "Not found $1." 1>&2
+    fi
     exit 1
 fi
 
 # Execute action
+echo "Update brew ..."
 brew update
 if [ -z "$OPT_DOWN_HASH" ]; then
     # List hash
+    echo "List last 5 commits ..."
     git log -5 --oneline $PACKAGE
 
 else
