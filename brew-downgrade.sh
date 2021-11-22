@@ -33,14 +33,12 @@ do
     l)  OPT_DOWN_HASH=
         ;;
     h) usage_exit
-        exit 0
         ;;
     esac
 done
 shift $((OPTIND - 1))
 if [ $# -eq 0 ]; then
     usage_exit
-    exit 0
 fi
 
 # Determine the file
